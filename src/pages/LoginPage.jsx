@@ -14,7 +14,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-const API_BASE = "http://localhost:3001/api/dashboard";
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL}/dashboard`;
 
 export default function LoginPage() {
   const [form, setForm] = useState({

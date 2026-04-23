@@ -26,7 +26,7 @@ export default function ExcelImport({ onSuccess }) {
         const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
         // Send to backend
-        const response = await fetch("http://localhost:3001/api/assets/import", {
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/assets/import`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ assets: jsonData }),

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
 
 export default function BorrowedForm() {
   const [assets, setAssets] = useState([]);

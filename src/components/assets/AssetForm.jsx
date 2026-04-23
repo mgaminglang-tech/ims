@@ -12,7 +12,7 @@ import {
 import { Save, X, Package2, Info, MonitorSmartphone, Cpu } from "lucide-react";
 import { toast } from "sonner";
 
-const API_BASE = "http://localhost:3001/api/assets";
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL}/assets`;
 
 const normalizeAssetTypeLabel = (value) => {
   const map = {

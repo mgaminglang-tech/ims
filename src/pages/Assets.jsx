@@ -25,7 +25,7 @@ export default function Assets() {
   const loadAssets = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/api/assets");
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/assets`);
       if (!response.ok) throw new Error("Failed to fetch assets");
       const data = await response.json();
       setAssets(data);

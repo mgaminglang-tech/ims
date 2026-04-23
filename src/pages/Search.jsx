@@ -13,7 +13,7 @@ import {
 import { Search as SearchIcon, Plus } from "lucide-react";
 import { toast } from "sonner";
 
-const API_BASE = "http://localhost:3001/api/assets";
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL}/assets`;
 
 export default function Search() {
   const [assets, setAssets] = useState([]);

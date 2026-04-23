@@ -13,7 +13,7 @@ import AccountabilityForm from "../components/forms/AccountabilityForm";
 import BorrowedForm from "../components/forms/BorrowedForm";
 import ReturnItemForm from "../components/forms/ReturnItemForm";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
 
 function BorrowedItemsTable() {
   const [records, setRecords] = useState([]);

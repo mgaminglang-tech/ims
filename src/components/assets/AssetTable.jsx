@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const PAGE_SIZE = 10;
-const API_BASE = "http://localhost:3001/api/assets";
+const API_BASE = `${import.meta.env.VITE_API_BASE_URL}/assets`;
 
 const normalize = (value) => String(value || "").trim().toUpperCase();
 
