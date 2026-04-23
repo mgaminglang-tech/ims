@@ -42,7 +42,7 @@ router.get("/", async (req, res) => {
           due_date,
           return_date,
           status
-        FROM dbo.borrow_records
+        FROM dbo.borrowed
       `);
 
       const today = new Date();
