@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 
-const API_URL = "http://localhost:3001/api";
+const API_URL = "https://api.mervinautomation.it.com/api";
 
 export default function ReturnItemForm() {
   const [borrowRecords, setBorrowRecords] = useState([]);

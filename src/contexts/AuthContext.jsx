@@ -2,7 +2,8 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AuthContext = createContext();
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+const API_URL =
+  import.meta.env.VITE_API_BASE_URL || "https://api.mervinautomation.it.com/api";
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       setAuthError(null);
 
       setAppPublicSettings({
-        id: "local-app",
+        id: "online-app",
         public_settings: {},
       });
 
@@ -55,6 +56,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password) => {
     try {
       setIsLoadingAuth(true);
+      setAuthError(null);
 
       const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
@@ -64,14 +66,28 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type") || "";
+      const data = contentType.includes("application/json")
+        ? await response.json()
+        : null;
 
-      if (!response.ok || !data.success) {
+      if (!response.ok) {
         setUser(null);
         setIsAuthenticated(false);
+
         return {
           success: false,
-          message: data.message || "Invalid username or password",
+          message: data?.message || `Login failed (${response.status})`,
+        };
+      }
+
+      if (!data?.success) {
+        setUser(null);
+        setIsAuthenticated(false);
+
+        return {
+          success: false,
+          message: data?.message || "Invalid username or password",
         };
       }
 
@@ -88,6 +104,10 @@ export const AuthProvider = ({ children }) => {
       };
     } catch (error) {
       console.error("Login API error:", error);
+
+      setUser(null);
+      setIsAuthenticated(false);
+
       return {
         success: false,
         message: "Unable to connect to server",
@@ -137,8 +157,10 @@ export const AuthProvider = ({ children }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
+
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
   return context;
 };

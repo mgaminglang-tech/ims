@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://api.mervinautomation.it.com/api";
 
 const FALLBACK_ASSET_TYPES = [
   "Laptop",

@@ -14,7 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://api.mervinautomation.it.com/api";
 
 const getFileIcon = (fileType) => {
   if (!fileType) return <File className="w-5 h-5 text-slate-400" />;

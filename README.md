@@ -102,7 +102,7 @@ Create a `.env` file in the root directory:
 
 ```env
 # Frontend
-VITE_API_URL=http://localhost:3001/api
+VITE_API_URL=https://api.mervinautomation.it.com/api
 
 # Database
 DB_SERVER=localhost

@@ -22,7 +22,7 @@ import {
   AlarmClockCheck,
 } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "https://api.mervinautomation.it.com/api";
 
 export default function Dashboard() {
   const [allItems, setAllItems] = useState([]);

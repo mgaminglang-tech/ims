@@ -1,18 +1,15 @@
 const sql = require("mssql");
 
 const config = {
-  server: process.env.DB_SERVER || "localhost",
-  database: process.env.DB_DATABASE || "imsdb",
-  port: parseInt(process.env.DB_PORT) || 1433,
-  user: process.env.DB_USER || "sa",
-  password: process.env.DB_PASSWORD || "admin1234",
+  server: process.env.DB_SERVER,
+  database: process.env.DB_DATABASE,
+  port: parseInt(process.env.DB_PORT || "1433"),
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   options: {
+    encrypt: process.env.DB_ENCRYPT === "true",
     trustServerCertificate: process.env.DB_TRUST_CERT === "true",
     enableArithAbort: true,
-    encrypt: process.env.DB_ENCRYPT === "true",
-    cryptoCredentialsDetails: {
-      minVersion: "TLSv1",
-    },
   },
   pool: {
     max: 10,
@@ -22,6 +19,12 @@ const config = {
   requestTimeout: 30000,
   connectionTimeout: 30000,
 };
+
+console.log("Connecting to SQL Server...");
+console.log("DB_SERVER:", process.env.DB_SERVER);
+console.log("DB_DATABASE:", process.env.DB_DATABASE);
+console.log("DB_PORT:", process.env.DB_PORT);
+console.log("DB_USER:", process.env.DB_USER);
 
 const poolPromise = new sql.ConnectionPool(config)
   .connect()
